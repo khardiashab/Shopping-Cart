@@ -1,0 +1,67 @@
+<%- include("../partials/admin-navbar") %>
+
+  <!-- home page  -->
+  <div class="container ">
+    <h2 class="page-title">Products</h2>
+    <a href="/admin/product/add-product" class="btn btn-primary">Add A New Product</a>
+    <br><br>
+
+    <% if(products.length) { %>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>
+              Price
+            </th>
+            <th>Catagory</th>
+            <th>Description</th>
+            <th>Images</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+
+        </thead>
+        <tbody id="title-table">
+          <% products.forEach(item=>{%>
+            <tr>
+              <th class="text-capitalize">
+                <%= item.title %>
+              </th>
+              <th class="text-capitalize">Rs. <%= item.price %>
+              </th>
+              <th class="text-capitalize">
+                <%= item.catagory %>
+              </th><div>
+                <%= item.description %>
+              </div>
+              <th class="text-capitalize">
+                <%= item.description %>
+              </th>
+              <th class="text-capitalize">
+                <% if(typeof item.images !== "undefined" && item.images.length) {%>
+                  <% for(const image of item.images){ %>
+                    <img src="<%= image %>" alt="<%= item.title %>" style="
+              height: 70px;
+              width: 70px;
+              object-fit: cover;
+              ">
+              <% } %>
+                        <% } else{ %>
+                          Empty
+                          <% } %>
+              </th>
+              <th> <a href="/admin/catagory/edit-catagory/<%= item.slug %>">Edit</a></th>
+                  <th> <a class="delete__pages" href="/admin/catagory/delete-catagory/<%= item._id %>">Delete</a></th>
+            </tr>
+            <%}) %>
+        </tbody>
+      </table>
+      <% } else { %>
+        <br><br>
+        <h5 class="text-muted text-center">There is not product available.</h5>
+        <% } %>
+  </div>
+
+
+  <%- include("../partials/footer") %>

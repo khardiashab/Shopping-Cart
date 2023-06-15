@@ -1,0 +1,53 @@
+<%- include("../partials/admin-navbar") %> 
+
+<!-- home page  -->
+<div class="container ">
+  <h2 class="page-title">Catagory</h2>
+  <a href="/admin/catagory/add-catagory" class="btn btn-primary">Add A New Catagory</a>
+<br><br>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+
+  </thead>
+  <tbody id="title-table">
+
+    <% catagory.forEach(pg =>{%>
+      <tr id="id=<%= pg._id %>" class="<%= pg.slug %>" >
+        <th class="text-capitalize"><%= pg.title %> </th> 
+        <th> <a href="/admin/catagory/edit-catagory/<%= pg.slug %>">Edit</a></th>
+        <% if(pg.title === 'home') {%> 
+          <th></th>
+        <% } else { %> 
+          <th > <a class="delete__pages" href="/admin/catagory/delete-catagory/<%= pg._id %>">Delete</a></th>
+        <% } %>  
+      </tr>
+    <%}) %> 
+  </tbody>
+</table>  
+
+</div>
+
+
+
+<!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+
+
+<script>
+  $("tbody").sortable({
+    items : "tr:not('.home')",
+    placeholder : "ui-state-hightlight",
+    update : function(){
+      let ids = $("tbody").sortable( "serialize", { key: "ids" } ) ;
+      let url = "/admin/pages/reorder-pages"
+      $.post(url, ids)
+    }
+  })
+</script> -->
+
+<%- include("../partials/footer") %> 

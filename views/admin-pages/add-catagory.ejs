@@ -1,0 +1,23 @@
+<%- include("../partials/admin-navbar") %> 
+<div class="container">
+  <h2 class="page-title">Add a Catagory</h2>
+
+<a href="/admin/pages" class="btn btn-primary">Back To Catagories</a>
+<br><br>
+<div class="form-warpper">
+  <form action="/admin/catagory/add-catagory" method="post">
+    <div class="form-group">
+      <label class="fw-bold">Title</label>
+      <input type="text" class="form-control" name="title" value="<%= title %>" placeholder="Title">
+    </div>
+    <div class="form-group">
+      <label class="fw-bold" >Slug</label>
+      <input type="text" class="form-control" name="slug" value="<%= slug %>" placeholder="Slug">
+    </div>
+
+    <br>
+    <button class="btn btn-outline-dark">Submit</button>
+  </form>
+</div>
+</div>
+<%- include("../partials/footer") %> 
